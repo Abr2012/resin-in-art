@@ -8,6 +8,7 @@
 
 <style>
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
  margin:0;
  font-family:Georgia,serif;
@@ -29,25 +30,38 @@ h1{
 }
 header p{color:#f5d6a1}
 nav{
- display:flex;justify-content:center;gap:22px;
- padding:15px;flex-wrap:wrap;
+ display:flex;
+ justify-content:center;
+ gap:22px;
+ padding:15px;
+ flex-wrap:wrap;
  background:#210e26;
- position:sticky;top:0;z-index:5;
+ position:sticky;
+ top:0;
+ z-index:5;
 }
 nav a{color:#f1c5ff;text-decoration:none}
+nav a:hover{color:#fff}
 .hero{
- text-align:center;padding:55px 20px;
+ text-align:center;
+ padding:55px 20px;
  background:radial-gradient(ellipse,#54205c,#170b1b 70%);
 }
 .hero h2{font-size:32px;color:#f4d19a}
 .hero p{line-height:1.7}
 .btn{
- display:inline-block;padding:12px 22px;
- border:0;border-radius:25px;
+ display:inline-block;
+ padding:12px 22px;
+ border:0;
+ border-radius:25px;
  background:linear-gradient(90deg,#b46bd1,#e8b76b);
- color:#210d24;font-weight:bold;
- cursor:pointer;text-decoration:none;
+ color:#210d24;
+ font-weight:bold;
+ cursor:pointer;
+ text-decoration:none;
+ margin:5px;
 }
+.btn:hover{opacity:.85}
 section{padding:35px 16px;max-width:1100px;margin:auto}
 .section-title{text-align:center;color:#e8bdff;font-size:30px}
 .products{
@@ -59,37 +73,62 @@ section{padding:35px 16px;max-width:1100px;margin:auto}
  background:linear-gradient(145deg,#321638,#190e20);
  border:1px solid #a96d9f;
  border-radius:18px;
- padding:20px;text-align:center;
+ padding:20px;
+ text-align:center;
  box-shadow:0 5px 20px #0008;
 }
 .product-art{
- height:145px;display:grid;place-items:center;
+ height:145px;
+ display:grid;
+ place-items:center;
  font-size:75px;
  background:linear-gradient(135deg,#54204f,#26122d);
- border-radius:13px;margin-bottom:15px;
+ border-radius:13px;
+ margin-bottom:15px;
 }
 .card h3{color:#f3d29e}
 .price{font-size:23px;color:#e8bdff;font-weight:bold}
-.card button{margin-top:10px}
+select,input,textarea{
+ width:100%;
+ padding:13px;
+ margin:8px 0;
+ border-radius:9px;
+ border:1px solid #a879a8;
+ background:#170d1c;
+ color:white;
+ font-size:16px;
+}
 .cart-box{
- background:#28132d;padding:22px;
- border:1px solid #b77ab1;border-radius:16px;
+ background:#28132d;
+ padding:22px;
+ border:1px solid #b77ab1;
+ border-radius:16px;
 }
 .cart-item{
- display:flex;justify-content:space-between;
- gap:10px;padding:10px 0;border-bottom:1px solid #65466a;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px;
+ padding:10px 0;
+ border-bottom:1px solid #65466a;
 }
-input,textarea{
- width:100%;padding:13px;margin:8px 0;
- border-radius:9px;border:1px solid #a879a8;
- background:#170d1c;color:white;font-size:16px;
-}
-footer{
- text-align:center;padding:30px;
- background:#210e26;color:#e7c1a0;
- border-top:1px solid #bd8b54;
+.cart-item button{
+ padding:7px 10px;
+ margin:2px;
+ border-radius:7px;
+ border:0;
+ cursor:pointer;
+ background:#e5b7ff;
+ color:#210d24;
 }
 .note{font-size:13px;color:#d5b9d5}
+footer{
+ text-align:center;
+ padding:30px;
+ background:#210e26;
+ color:#e7c1a0;
+ border-top:1px solid #bd8b54;
+}
 </style>
 </head>
 
@@ -110,8 +149,10 @@ footer{
 
 <div class="hero" id="home">
  <h2>Welcome to Resin In Art ✨</h2>
- <p>Discover beautiful handmade resin creations.<br>
- Every piece is made with love and creativity.</p>
+ <p>
+ Discover beautiful handmade resin creations.<br>
+ Every piece is made with love and creativity.
+ </p>
  <a class="btn" href="#products">Explore Collection</a>
 </div>
 
@@ -120,36 +161,66 @@ footer{
 
  <div class="products">
 
+  <!-- ALPHABET KEYCHAINS -->
   <div class="card">
-   <div class="product-art">🔑🌸</div>
-   <h3>Letter Keychains</h3>
-   <p>Beautiful handmade resin keychains.</p>
-   <div class="price">₹40</div>
-   <button class="btn" onclick="addToCart('Letter Keychains',40)">Add to Cart</button>
+   <div class="product-art">🔑💜</div>
+   <h3>Alphabet Letter Keychains</h3>
+   <p>Choose your favourite alphabet from A to Z.</p>
+   <div class="price">₹40 each</div>
+
+   <select id="letterChoice">
+    <option value="">Select Alphabet</option>
+    <option>A</option><option>B</option>
+    <option>C</option><option>D</option>
+    <option>E</option><option>F</option>
+    <option>G</option><option>H</option>
+    <option>I</option><option>J</option>
+    <option>K</option><option>L</option>
+    <option>M</option><option>N</option>
+    <option>O</option><option>P</option>
+    <option>Q</option><option>R</option>
+    <option>S</option><option>T</option>
+    <option>U</option><option>V</option>
+    <option>W</option><option>X</option>
+    <option>Y</option><option>Z</option>
+   </select>
+
+   <button class="btn" onclick="addLetterKeychain()">
+    Add to Cart
+   </button>
   </div>
 
+  <!-- BOOKMARKS -->
   <div class="card">
    <div class="product-art">🌺📖</div>
    <h3>Bookmarks</h3>
-   <p>Artistic bookmarks for book lovers.</p>
+   <p>Artistic handmade bookmarks for book lovers.</p>
    <div class="price">₹60</div>
-   <button class="btn" onclick="addToCart('Bookmarks',60)">Add to Cart</button>
+   <button class="btn" onclick="addToCart('Bookmarks',60)">
+    Add to Cart
+   </button>
   </div>
 
+  <!-- COASTERS -->
   <div class="card">
    <div class="product-art">🌸⭕</div>
    <h3>Coasters</h3>
    <p>Decorative handmade resin coasters.</p>
    <div class="price">₹70</div>
-   <button class="btn" onclick="addToCart('Coasters',70)">Add to Cart</button>
+   <button class="btn" onclick="addToCart('Coasters',70)">
+    Add to Cart
+   </button>
   </div>
 
+  <!-- EARRINGS -->
   <div class="card">
    <div class="product-art">💜✨</div>
    <h3>Earrings</h3>
    <p>Lovely handmade resin earrings.</p>
    <div class="price">₹40</div>
-   <button class="btn" onclick="addToCart('Earrings',40)">Add to Cart</button>
+   <button class="btn" onclick="addToCart('Earrings',40)">
+    Add to Cart
+   </button>
   </div>
 
  </div>
@@ -157,23 +228,35 @@ footer{
 
 <section id="cart">
  <h2 class="section-title">Your Shopping Cart 🛍️</h2>
+
  <div class="cart-box">
   <div id="cartItems">Your cart is empty.</div>
   <h3 id="total">Total: ₹0</h3>
 
   <h3>Delivery Details</h3>
-  <input id="customer" placeholder="Your name">
-  <textarea id="address" placeholder="Your complete delivery address" rows="3"></textarea>
 
-  <button class="btn" onclick="orderWhatsApp()">Order on WhatsApp</button>
-  <p class="note">Shipping available. Delivery charges can be confirmed when ordering.</p>
+  <input id="customer" placeholder="Your name">
+
+  <textarea id="address"
+   placeholder="Your complete delivery address"
+   rows="3"></textarea>
+
+  <button class="btn" onclick="orderWhatsApp()">
+   Order on WhatsApp
+  </button>
+
+  <p class="note">
+   Shipping charges will be confirmed when ordering.
+  </p>
  </div>
 </section>
 
 <section id="contact">
  <h2 class="section-title">Thank You for Visiting ♡</h2>
- <p style="text-align:center">Made with love by Humira.<br>
- Thank you for supporting our small business!</p>
+ <p style="text-align:center">
+  Made with love by Humira.<br>
+  Thank you for supporting our small business!
+ </p>
 </section>
 
 <footer>
@@ -182,6 +265,7 @@ footer{
 </footer>
 
 <script>
+
 let cart=JSON.parse(localStorage.getItem("resinCart")||"[]");
 
 function saveCart(){
@@ -191,35 +275,63 @@ function saveCart(){
 
 function addToCart(name,price){
  let item=cart.find(x=>x.name===name);
- if(item){item.qty++;}
- else{cart.push({name,price,qty:1});}
+
+ if(item){
+  item.qty++;
+ }else{
+  cart.push({name:name,price:price,qty:1});
+ }
+
  saveCart();
  alert(name+" added to your cart!");
 }
 
+function addLetterKeychain(){
+ let letter=document.getElementById("letterChoice").value;
+
+ if(!letter){
+  alert("Please select an alphabet!");
+  return;
+ }
+
+ addToCart("Letter Keychain - "+letter,40);
+}
+
 function changeQty(index,amount){
  cart[index].qty+=amount;
- if(cart[index].qty<=0)cart.splice(index,1);
+
+ if(cart[index].qty<=0){
+  cart.splice(index,1);
+ }
+
  saveCart();
 }
 
 function renderCart(){
  let area=document.getElementById("cartItems");
  let total=0;
+
  if(cart.length===0){
   area.innerHTML="Your cart is empty.";
  }else{
   area.innerHTML=cart.map((item,i)=>{
    total+=item.price*item.qty;
-   return `<div class="cart-item">
-   <span>${item.name} × ${item.qty}<br>₹${item.price*item.qty}</span>
-   <span>
-   <button onclick="changeQty(${i},-1)">−</button>
-   <button onclick="changeQty(${i},1)">+</button>
-   <button onclick="changeQty(${i},-${item.qty})">Remove</button>
-   </span></div>`;
+
+   return `
+   <div class="cart-item">
+    <span>
+     ${item.name} × ${item.qty}<br>
+     ₹${item.price*item.qty}
+    </span>
+    <span>
+     <button onclick="changeQty(${i},-1)">−</button>
+     <button onclick="changeQty(${i},1)">+</button>
+     <button onclick="changeQty(${i},-${item.qty})">Remove</button>
+    </span>
+   </div>`;
   }).join("");
  }
+
  document.getElementById("total").innerText="Total: ₹"+total;
 }
 
@@ -227,29 +339,49 @@ function orderWhatsApp(){
  let name=document.getElementById("customer").value.trim();
  let address=document.getElementById("address").value.trim();
 
- if(!cart.length){alert("Your cart is empty!");return;}
- if(!name||!address){alert("Please enter your name and address.");return;}
+ if(!cart.length){
+  alert("Your cart is empty!");
+  return;
+ }
 
- let message="Hello! I would like to order from Resin In Art.%0A";
- message+="Name: "+encodeURIComponent(name)+"%0A";
- message+="Address: "+encodeURIComponent(address)+"%0A%0A";
+ if(!name||!address){
+  alert("Please enter your name and address.");
+  return;
+ }
+
+ let message="Hello! I would like to order from Resin In Art.\n";
+ message+="Name: "+name+"\n";
+ message+="Address: "+address+"\n\n";
+
  cart.forEach(item=>{
-  message+=encodeURIComponent(item.name+" x "+item.qty+" = ₹"+(item.price*item.qty))+"%0A";
+  message+=item.name+" x "+item.qty+" = ₹"+
+  (item.price*item.qty)+"\n";
  });
- let total=cart.reduce((sum,item)=>sum+item.price*item.qty,0);
- message+="Total: ₹"+total;
 
- // Add your WhatsApp number later (country code + number, digits only)
+ let total=cart.reduce(
+  (sum,item)=>sum+item.price*item.qty,0
+ );
+
+ message+="\nTotal: ₹"+total;
+
+ // Connect your WhatsApp number later.
+ // Use country code and number, digits only.
  let whatsappNumber="91XXXXXXXXXX";
 
  if(whatsappNumber==="91XXXXXXXXXX"){
   alert("WhatsApp ordering will be connected in the next step.");
   return;
  }
- window.open("https://wa.me/"+whatsappNumber+"?text="+message,"_blank");
+
+ window.open(
+  "https://wa.me/"+whatsappNumber+
+  "?text="+encodeURIComponent(message),
+  "_blank"
+ );
 }
 
 renderCart();
+
 </script>
 
 </body>
